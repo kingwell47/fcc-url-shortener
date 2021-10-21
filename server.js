@@ -15,6 +15,8 @@ app.get("/", function (req, res) {
   res.sendFile(process.cwd() + "/views/index.html");
 });
 
+//Adapted from Brad Traversy's URL shortening tutorial https://www.youtube.com/watch?v=Z57566JBaZQ
+
 //Connect to DB
 const connectDB = async () => {
   try {
