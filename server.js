@@ -36,9 +36,7 @@ app.get("/api/hello", function (req, res) {
 });
 
 //Solution Endpoint
-app.post("/api/shorturl", function (req, res) {
-  res.json({ original_url: "original", short_url: "short" });
-});
+app.use("/api/shorturl", require("./routes/url"));
 
 app.listen(port, function () {
   console.log(`Listening on port ${port}`);
