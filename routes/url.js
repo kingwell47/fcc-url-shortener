@@ -12,8 +12,8 @@ router.use(express.urlencoded({ extended: true }));
 router.post("/", async (req, res) => {
   const urlToShorten = req.body.url;
   //check if valid url
-  if (!validUrl.isUri(urlToShorten)) return res.json({ error: "invalid url" });
-
+  if (!validUrl.isWebUri(urlToShorten))
+    return res.json({ error: "invalid url" });
   //create URL code
   const urlCode = shortid.generate();
 
@@ -22,7 +22,7 @@ router.post("/", async (req, res) => {
     let url = await Url.findOne({ originalUrl: urlToShorten });
 
     if (url) {
-      return res.json({
+      res.json({
         original_url: url.originalUrl,
         short_url: url.shortUrl,
       });
